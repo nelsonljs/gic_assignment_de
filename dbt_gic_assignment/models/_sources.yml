@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: dataset
+    description: master reference data.
+    schema: source
+    tables:
+      - name: bond_reference
+      - name: bond_prices
+      - name: equity_reference
+      - name: equity_prices
+      - name: external_funds
+
