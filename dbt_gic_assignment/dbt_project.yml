@@ -1,0 +1,21 @@
+name: dbt_gic_takehome
+
+config-version: 2
+version: 1.0
+
+profile: dbt_sqlite
+
+model-paths: ["models"]
+
+clean-targets:
+  - target
+  - dbt_packages
+
+models:
+  dbt_gic_takehome:
+    +schema: staging
+    +materialized: table
+
+    core:
+      +schema: core
+
