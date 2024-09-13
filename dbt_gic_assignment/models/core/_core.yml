@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_bond
+    description: Bond Reference dimensions
+
+    columns:
+      - name: ISIN
+        description: Primary Key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_date
+    description: Helper dimension table
+
+  - name: dim_equity
+    description: Equity Reference Dimensions
+    columns:
+      - name: SYMBOL
+        description: Primary Key
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_fund_date_holdings
+    description: Fund Date holdings at eom
+
+  - name: fact_securities_prices_eod
+    description: refence table for end of day security prices
+

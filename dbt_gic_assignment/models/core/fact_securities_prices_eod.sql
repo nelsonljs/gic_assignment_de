@@ -2,8 +2,9 @@ with source as (
     {{ dbt_utils.union_relations(
         relations=[
             ref('bond_prices_int'), 
-            ref('stg_equity_prices')
-        ]
+            ref('equity_prices_int')
+        ],
+        source_column_name=None
     ) }}
 ),
 

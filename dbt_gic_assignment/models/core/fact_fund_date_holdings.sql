@@ -18,4 +18,4 @@ enrichments as (
     from source
 )
 
-select * from renamed
+select * from enrichments
