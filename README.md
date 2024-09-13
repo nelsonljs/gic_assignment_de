@@ -13,9 +13,9 @@ Raw data is first loaded into a `raw` schema in the database. A sample python sc
 ![](solution/Physical_data_model.png)
 
 Consecutive transformations follow the medallion architecture.
-- Staging tables : Red
-- Core tables (Facts/Dimensions): Blue
-- Data Marts : Gold
+- Bronze Tables - Staging tables : Red
+- Silver Tables - Core tables (Facts/Dimensions): Blue
+- Gold Tables   - Data Marts : Gold
 
 Facts and Dimensions are designed following a `star schema`.
 
