@@ -9,48 +9,42 @@ with date_spine as (
     from
         {{ ref('dim_date') }}
     where
-        date_day < current_date()
+        date_day < current_date
 ),
 
--- In case of duplicates, dedupe on day.
 src_bond_prices as (
     select
-        DATETIME::date as bond_price_date,
-        ISIN,
-        price,
-        first_value(price) over (partition by ISIN, bond_price_date order by datetime) as last_recorded_price_by_day
+        *
     from    
         {{ ref('stg_bond_prices') }}
-),
-
-get_eod_bond_prices as (
-    select
-        bond_price_date,
-        ISIN,
-        last_recorded_price_by_day
-    from
-        src_bond_prices
-    group by all
 ),
 
 get_pseudo_type2_table as (
     select
         *,
-        lead(DATETIME, 1, '2999-01-01') RESPECT NULLS over (partition by ISIN order by bond_price_date) as lead_date_to
-        bond_price_date as date_from,
-        dateadd('day', -1, lead_date_to) as date_to
+        lead(DATETIME, 1, '2999-01-01') over (partition by ISIN order by datetime) as lead_date_to,
+        datetime as date_from
     from
-        get_eod_bond_prices
+        src_bond_prices
+),
+
+enrichments as (
+    select
+        *,
+        lead_date_to - INTERVAL '1 day' as date_to
+    from
+        get_pseudo_type2_table
 ),
 
 joined as (
     select
         date_day,
-        last_recorded_price_by_day as price,
+        price,
         ISIN
     from date_spine 
-    left join src_bond_prices s on
+    left join enrichments s on
         (date_spine.date_day between s.date_from and s.date_to)
+    where isin is not null
 )
 
 select *
