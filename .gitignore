@@ -166,3 +166,4 @@ sandbox/
 */logs/
 */dbt_packages/
 data-engineering/external-funds/
+package-lock.yml
