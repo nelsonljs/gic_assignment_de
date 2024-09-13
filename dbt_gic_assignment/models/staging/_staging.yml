@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_bond_prices
+    description: Bond Reference Prices collected weekly
+
+  - name: stg_bond_reference
+    description: Bond Reference dimensions
+
+  - name: stg_equity_prices
+    description: Equity Reference Prices collected daily
+
+  - name: stg_equity_reference
+    description: Equity Reference Dimensions
+
+  - name: stg_external_funds
+    description: External fund reports collected at end of month
+

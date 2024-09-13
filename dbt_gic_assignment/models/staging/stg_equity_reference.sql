@@ -3,7 +3,7 @@ with source as (
 ),
 renamed as (
     select
-        {{ adapter.quote("SYMBOL") }},
+        {{ adapter.quote("SYMBOL") }} as SYMBOL,
         {{ adapter.quote("COUNTRY") }},
         {{ adapter.quote("SECURITY NAME") }} as security_name,
         {{ adapter.quote("SECTOR") }},

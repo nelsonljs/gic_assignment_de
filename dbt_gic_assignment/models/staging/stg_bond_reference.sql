@@ -4,7 +4,7 @@ with source as (
 renamed as (
     select
         {{ adapter.quote("SECURITY NAME") }} as security_name,
-        {{ adapter.quote("ISIN") }},
+        {{ adapter.quote("ISIN") }} as ISIN,
         {{ adapter.quote("SEDOL") }},
         {{ adapter.quote("COUNTRY") }},
         {{ adapter.quote("COUPON") }},
