@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: mart_best_performing_fund
+    description: Best Performing fund computed using monthly reports.
+
+  - name: mart_price_reconciliation
+    description: Price reconciliation table comparing end of month price to actual reported price
+
+
+

@@ -14,7 +14,7 @@ with source as (
 enrichments as (
     select 
         *,
-        coalesce(ISIN, SYMBOL) as equity_id
+        coalesce(SYMBOL, ISIN) as equity_id
     from source
 )
 
