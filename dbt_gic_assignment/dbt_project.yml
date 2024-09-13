@@ -3,7 +3,7 @@ name: dbt_gic_takehome
 config-version: 2
 version: 1.0
 
-profile: dbt_sqlite
+profile: dbt_postgres
 
 model-paths: ["models"]
 
@@ -13,9 +13,19 @@ clean-targets:
 
 models:
   dbt_gic_takehome:
-    +schema: staging
     +materialized: table
 
     core:
       +schema: core
+      +docs: 
+        node_color: blue
 
+    marts:
+      +schema: marts
+      +docs: 
+        node_color: gold
+
+    staging:
+      +schema: staging
+      +docs: 
+        node_color: red

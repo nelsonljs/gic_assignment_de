@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: dataset
     description: master reference data.
-    schema: source
+    schema: raw
     tables:
       - name: bond_reference
       - name: bond_prices
