@@ -5,7 +5,7 @@ models:
     description: Bond Reference dimensions
 
     columns:
-      - name: ISIN
+      - name: isin
         description: Primary Key
         tests:
           - unique
