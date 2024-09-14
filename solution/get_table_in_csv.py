@@ -3,7 +3,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-engine = create_engine('postgresql://postgres:admin123@localhost:5432/analytics')
+engine = create_engine('postgresql://{user}:{pass}@localhost:5432/analytics')
 
 sql = '''
 select * from dbt_nelson_marts.mart_best_performing_fund;

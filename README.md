@@ -4,13 +4,22 @@
 
 ### Solution 1
 
-A solution is developed using `dbt` to transform the marts as necessary. A postgres database is used to prototype the solution.
+An OLAP architecture is proposed to support the following business transformations necessary. An overview of the solution architecture is as provided below.
+A sample of the dbt project is attached in the repository.
+
+A postgres database is used to prototype the solution.
+
+![](solution/solution_architecture.png)
+
+**ERD**
 
 ![](solution/Conceptual_data_model.png)
 
-Raw data is first loaded into a `raw` schema in the database. A sample python script (`myloader.py`) is provided 
+**Physical Data Model**
 
 ![](solution/Physical_data_model.png)
+
+Raw data is first loaded into a landing location in the database. As Postgres does not support cross database interactions, data is loaded into the `raw` schema. A sample python script (`myloader.py`) is provided 
 
 Consecutive transformations follow the medallion architecture.
 - Bronze Tables - Staging tables : Red
@@ -40,9 +49,11 @@ Data Visibility is highly attainable using dbt. Some sample unit tests for Prima
 ### Solution 3
 
 Price reconciliation report is generated as a data mart (`mart_price_reconciliation`) in the OLAP Database. A sample of the report is provided in the csv file:
-`price_reconciliation_report.csv`
+`price_reconciliation_report.csv`.
 
-Scalability is not an immediate concern due to the nature of the report being generated as a database table. Query optimization can be performed as necessary when the reporting marts get too large.
+You may refer to the following file for a [sql_query](dbt_gic_assignment\models\marts\mart_price_reconciliation.sql).
+
+Scalability is not an immediate concern due to the nature of the report being generated as a database table. Query optimization can be performed as necessary when the reporting marts get too large. The solution is scalable to `N` tables as long as the ingestion format is defined semi-structurally.
 
 ---
 
@@ -52,10 +63,12 @@ Best Performing funds is generated as a data mart (`mart_best_performing_fund`) 
 `best_performing_fund.csv`
 
 The logic to generate the best performing fund is computed by 
-1. aggregating the fund's equity holdings and realised P/L for the report
+1. Aggregating the fund's equity holdings and realised P/L for the report
 1. Comparing against last known reported equity total value
 1. Comparing against first known reported equity total value (For cumulative change)
 1. creating a dense rank comparison on percent_change and cumulative_percent_change.
+
+You may refer to the following file for a [sql_query](dbt_gic_assignment\models\marts\mart_best_performing_fund.sql).
 
 ---
 
