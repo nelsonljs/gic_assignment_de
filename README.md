@@ -51,7 +51,7 @@ Data Visibility is highly attainable using dbt. Some sample unit tests for Prima
 Price reconciliation report is generated as a data mart (`mart_price_reconciliation`) in the OLAP Database. A sample of the report is provided in the csv file:
 `price_reconciliation_report.csv`.
 
-You may refer to the following file for a [sql_query](dbt_gic_assignment\models\marts\mart_price_reconciliation.sql).
+You may refer to the following file for a [sql_query](dbt_gic_assignment/models/marts/mart_price_reconciliation.sql).
 
 Scalability is not an immediate concern due to the nature of the report being generated as a database table. Query optimization can be performed as necessary when the reporting marts get too large. The solution is scalable to `N` tables as long as the ingestion format is defined semi-structurally.
 
@@ -68,7 +68,7 @@ The logic to generate the best performing fund is computed by
 1. Comparing against first known reported equity total value (For cumulative change)
 1. creating a dense rank comparison on percent_change and cumulative_percent_change.
 
-You may refer to the following file for a [sql_query](dbt_gic_assignment\models\marts\mart_best_performing_fund.sql).
+You may refer to the following file for a [sql_query](dbt_gic_assignment/models/marts/mart_best_performing_fund.sql).
 
 ---
 
